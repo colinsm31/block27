@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function SignUpForm(){
+function SignUpForm({setToken}){
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -10,7 +10,9 @@ function SignUpForm(){
     try{
       const response = await fetch("https://fsa-jwt-practice.herokuapp.com/signup");
       const result = await response.json();
+      setToken(result.token);
       console.log(result);
+      console.log("Submit button clicked!");
     }catch(error){
       setError(error.message)
     }
